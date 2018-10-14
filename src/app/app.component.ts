@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { SocketServiceService } from './services/socket-service.service';
+import { ApihttpService } from './services/apihttp.service';
+import 'rxjs';
+
+
 
 
 
@@ -14,8 +18,9 @@ import { SocketServiceService } from './services/socket-service.service';
 export class AppComponent {
   title = 'ftsock';
   private ioConnection: any;
+  texto: String = 'Inicialmente nada';
 
-  constructor (private socketService: SocketServiceService) {
+  constructor (private socketService: SocketServiceService, private apiHttp: ApihttpService) {
     this.socketService.onMessageA().subscribe((message: any) => {
       console.log('Mensaje A:', message);
     });
@@ -39,6 +44,12 @@ export class AppComponent {
     this.socketService.sendMessage('sfdsfdsfsd');
   }
 
-
+  Solicitar_api() {
+    console.log('Solicitando API');
+    this.apiHttp.Solicitar_api().subscribe ((data) => {
+      console.log('Datos recibidos por la api:', data);
+      this.texto = data.json().ok;
+    });
+  }
 
 }
