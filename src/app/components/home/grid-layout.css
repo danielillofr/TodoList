@@ -1,0 +1,29 @@
+.grid-container {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-gap: 1px 1px;
+    grid-template-areas: "Titulo" "Cuerpo";
+}
+
+.Titulo {
+    grid-area: Titulo;
+}
+
+.Cuerpo {
+    display: grid;
+    grid-area: Cuerpo;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 1px 1px;
+    grid-template-areas: "Lista Formulario entrada";
+}
+
+.Lista {
+    grid-area: Lista;
+}
+
+.Formulario-entrada {
+    grid-area: Formulario entrada;
+}

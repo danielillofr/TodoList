@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
     <h1>
         Welcome to {{ title }}!
     </h1>
@@ -20,3 +20,16 @@
 
 <button (click)="EnviarMensaje()">Botoncito</button>
 <button (click)="Solicitar_api()">Botoncito API</button> {{Texto}}
+<table>
+    <tr *ngFor="let usuario of usuarios">
+        <td>Nombre del usuario:</td>
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario._id}}</td>
+        <td><button (click)="Borrar(usuario._id)">Borrar</button></td>
+        <td><button (click)="Modificar(usuario._id)">Borrar</button></td>
+    </tr>
+
+</table>
+
+{{textoApi}} -->
+<router-outlet></router-outlet>
