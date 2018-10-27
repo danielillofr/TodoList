@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 const app_routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: '**', component: HomeComponent },
+  { path: '**', component: LoginComponent },
 
   //{ path: 'path/:routeParam', component: MyComponent },
   //{ path: 'staticPath', component: ... },

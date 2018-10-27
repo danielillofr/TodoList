@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApihttpService } from './../../services/apihttp.service';
 import { TipoUsuario } from './../../interfaces/usuario.interface';
+import { SocketServiceService } from './../../services/socket-service.service';
+import 'rxjs';
 
 
 
@@ -16,24 +18,36 @@ export class HomeComponent implements OnInit {
 
   titulo: String = 'TodoList';
   usuarios: TipoUsuario[] = [];
-  constructor(private router: Router, apihttp: ApihttpService) {
+  tareas: any[] = [];
+  textoTarea = '';
+  constructor(private router: Router, private apihttp: ApihttpService, private socketService: SocketServiceService) {
+    console.log('Pero que conste que el login ni ha empezado');
     if (!(apihttp.logueado)) {
       router.navigate(['login']);
     }
-    apihttp.solicitar_usuarios().subscribe (data => {
-      const datosJson = data.json();
-      if (datosJson.ok === false) {
-        if (datosJson.errBaseDatos) {
-          return alert('Error accediendo a la base de datos');
-        } else {
-          return alert(datosJson.err);
-        }
-      }
-      this.usuarios = datosJson.usuarios;
-      console.log(this.usuarios);
+    socketService.onMensajes().subscribe ((mensajes: any) => {
+      console.log('Mensajes:', mensajes);
+      this.tareas = mensajes;
     });
+
+    socketService.Solicitar_mensajes();
+
+    // socketService.onMensajes().subscribe((message: any) => {
+    //   console.log('Mensajes:', message);
+    // });
+   }
+   Eliminar_tarea(_id: String) {
+     this.socketService.Eliminar_mensaje (_id);
    }
 
+   Crear_mensaje () {
+     this.socketService.Crear_mensaje (this.textoTarea);
+     this.textoTarea = '';
+   }
+
+   Rea_tarea (_id: String) {
+     this.socketService.Realizar_mensaje (_id);
+   }
   ngOnInit() {
   }
 

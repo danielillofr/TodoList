@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-// import { SocketServiceService } from './services/socket-service.service';
+import { SocketServiceService } from './services/socket-service.service';
 // import { ApihttpService } from './services/apihttp.service';
-// import 'rxjs';
+import 'rxjs';
 // import { TipoUsuario } from './interfaces/usuario.interface';
 
 
@@ -23,17 +23,18 @@ export class AppComponent {
   // texto: String = 'Inicialmente nada';
   // usuarios: TipoUsuario[];
   // textoApi: String = '';
-  // constructor (private socketService: SocketServiceService, private apiHttp: ApihttpService) {
-  //   this.socketService.onMessageA().subscribe((message: any) => {
-  //     console.log('Mensaje A:', message);
-  //   });
-  //   this.socketService.onMessageCallback().subscribe((message: any) => {
+  constructor (private socketService: SocketServiceService) {
+    // this.socketService.onMensajes().subscribe((message: any) => {
+    //   console.log('Mensaje A:', message);
+    // });
+  // }
+    // this.socketService.onMessageCallback().subscribe((message: any) => {
   //     console.log('Mensaje del callback:', message);
   //   });
-  //   this.socketService.onMessageB().subscribe((message: any) => {
-  //     console.log('Mensaje B:', message);
-  //   });
-
+    // this.socketService.onMessageB().subscribe((message: any) => {
+    //   console.log('Mensaje B:', message);
+    // });
+  }
   //   this.socketService.onEvent('connect').subscribe ( () => {
   //     console.log('Conectado al servidor');
   //   });

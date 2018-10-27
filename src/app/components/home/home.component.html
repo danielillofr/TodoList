@@ -18,10 +18,10 @@
                                         #
                                     </th>
                                     <th>
-                                        Product
+                                        Tarea
                                     </th>
                                     <th>
-                                        Payment Taken
+                                        Realizada
                                     </th>
                                     <th>
                                         Status
@@ -29,18 +29,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let tarea of tareas; let i=index">
                                     <td>
-                                        1
+                                        {{i}}
                                     </td>
                                     <td>
-                                        TB - Monthly
+                                        {{tarea.textoTarea}}
+                                    </td>
+                                    <td *ngIf="!tarea.realizada">
+                                        <button (click)="Rea_tarea(tarea._id)">Realizar</button>
+                                    </td>
+                                    <td *ngIf="tarea.realizada">
+                                        Tarea realizada
                                     </td>
                                     <td>
-                                        01/04/2012
-                                    </td>
-                                    <td>
-                                        Default
+                                        <button (click)="Eliminar_tarea(tarea._id)">Eliminar tarea</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -59,9 +62,9 @@
                                 <label for="tareaInput">
                           Tarea:
                         </label>
-                                <input type="email" class="form-control" id="tareaInput" />
+                                <input type="email" class="form-control" id="tareaInput" [(ngModel)]="textoTarea" name="textoTarea" />
                             </div>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" (click)="Crear_mensaje()" class="btn btn-primary">
                         Submit
                       </button>
                         </form>
